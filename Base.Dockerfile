@@ -33,7 +33,7 @@ RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install -y \
     apt-get install -y powershell && \
     echo 'alias powershell="pwsh"' >> "${HOME}/.bashrc"
 
-RUN RUN pwsh -Command Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+RUN pwsh -Command Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 RUN pwsh -Command Install-Module -Name Az -Force -AllowClobber
 
 #Set User Path with expected paths for new packages
