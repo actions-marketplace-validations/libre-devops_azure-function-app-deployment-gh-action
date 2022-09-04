@@ -47,7 +47,7 @@ else
 fi
 
 if [[ -n "${5}" ]]; then
-    code_function_app_command="${5}"
+    code_function_app_name="${5}"
 else
     print_error "Variable assignment for function app command, ensure it is correct and try again - Error LDO_CD_DEPLOY_COMMAND" ; exit 1
 fi
@@ -59,7 +59,7 @@ az login \
 --tenant "${code_svp_tenant_id}" -o none
 
 if [[ -n "$(az account show)" && "$(command -v func)" ]]; then
-    "${code_function_app_command}"
+    func azure functionapp publish "${code_function_app_name}"
     print_success "Deployment complete" && exit 0
 
     else

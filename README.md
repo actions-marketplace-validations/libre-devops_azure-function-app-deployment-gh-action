@@ -28,7 +28,7 @@ inputs:
     description: 'The tenant id needed for az login'
     required: true
 
-  code-app-cmd:
+  code-app-name:
     description: 'The core function command you want to run'
     required: true
 
@@ -40,6 +40,6 @@ runs:
     - ${{ inputs.code-client-id }}
     - ${{ inputs.code-client-secret }}
     - ${{ inputs.code-tenant-id }}
-    - ${{ inputs.code-app-cmd }}
+    - ${{ inputs.code-app-name }}
 
 ```
