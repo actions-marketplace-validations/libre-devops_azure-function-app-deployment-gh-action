@@ -28,7 +28,6 @@ else
     print_error "Code path is empty or invalid, check the following tree output and see if it is as you expect - Error - LDO_CD_CODE_PATH" && tree . && exit 1
 fi
 
-
 if [[ -n "${2}" ]]; then
     code_svp_client_id="${2}"
 else
@@ -48,26 +47,16 @@ else
 fi
 
 if [[ -n "${5}" ]]; then
-    code_function_app_name="${5}"
-else
-    print_error "Variable assignment for function app name has failed or is invalid, ensure it is correct and try again - Error LDO_CD_APP_NAME" ; exit 1
-fi
-
-if [[ -n "${6}" ]]; then
-    code_function_app_command="${6}"
+    code_function_app_command="${5}"
 else
     print_error "Variable assignment for function app command, ensure it is correct and try again - Error LDO_CD_DEPLOY_COMMAND" ; exit 1
 fi
 
-az login --service-principal -u "${code_svp_client_id}" -p "${code_svp_client_secret}" --tenant "${code_svp_tenant_id}"
+az login --service-principal \
+-u "${code_svp_client_id}" \
+-p "${code_svp_client_secret}" \
+--tenant "${code_svp_tenant_id}" && \
 
-# shellcheck disable=SC2046
-if [ $(az account show) ]; then
-    print_alert "Trying to deploy to $(print_success ${code_function_app_name})"
-    ${code_function_app_command}
-    print_success "Deployment complete" && exit 0
+${code_function_app_command}
 
-    else
-      print_alert "Something went wrong"
-      print_error "Please check any outputs and try again" && exit 1
-fi
+

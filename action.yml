@@ -23,10 +23,6 @@ inputs:
     description: 'The tenant id needed for az login'
     required: true
 
-  code-app-name:
-    description: 'The name of your app you wish to deploy to'
-    required: true
-
   code-app-cmd:
     description: 'The core function command you want to run'
     required: true
@@ -39,5 +35,4 @@ runs:
     - ${{ inputs.code-client-id }}
     - ${{ inputs.code-client-secret }}
     - ${{ inputs.code-tenant-id }}
-    - ${{ inputs.code-app-name }}
     - ${{ inputs.code-app-cmd }}
