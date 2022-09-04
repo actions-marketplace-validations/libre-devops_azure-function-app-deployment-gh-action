@@ -63,7 +63,7 @@ az login --service-principal -u "${code_svp_client_id}" -p "${code_svp_client_se
 
 # shellcheck disable=SC2046
 if [ $(az account show) ]; then
-    ${code_function_app_command} "${code_function_app_name}"
+    ${code_function_app_command}
     print_success "Deployment complete" && exit 0
 
     else
