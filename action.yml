@@ -27,6 +27,10 @@ inputs:
     description: 'The core function command you want to run'
     required: true
 
+  code_additional_params:
+    description: 'The additional params
+    required: true
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -36,3 +40,4 @@ runs:
     - ${{ inputs.code-client-secret }}
     - ${{ inputs.code-tenant-id }}
     - ${{ inputs.code-app-name }}
+    - ${{ inputs.code_additional_params }}

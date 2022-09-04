@@ -52,6 +52,12 @@ else
     print_error "Variable assignment for function app command, ensure it is correct and try again - Error LDO_CD_DEPLOY_COMMAND" ; exit 1
 fi
 
+if [[ -n "${6}" ]]; then
+    code_additional_params="${6}"
+else
+    print_error "Variable assignment for function app command, ensure it is correct and try again - Error LDO_CD_DEPLOY_COMMAND" ; exit 1
+fi
+
 az login \
 --service-principal \
 -u "${code_svp_client_id}" \
@@ -59,7 +65,7 @@ az login \
 --tenant "${code_svp_tenant_id}" -o none
 
 if [[ -n "$(az account show)" && "$(command -v func)" ]]; then
-    func azure functionapp publish "${code_function_app_name}"
+    func azure functionapp publish "${code_function_app_name}" ${code_additional_params}
     print_success "Deployment complete" && exit 0
 
     else
