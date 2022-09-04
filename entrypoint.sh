@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eou pipefail
+set -xeou pipefail
 
 print_success() {
     lightcyan='\033[1;36m'
@@ -59,11 +59,11 @@ else
     print_error "Variable assignment for function app command, ensure it is correct and try again - Error LDO_CD_DEPLOY_COMMAND" ; exit 1
 fi
 
-az login --service-principal -u "${code_svp_client_id}" -p "${code_svp_client_secret}" --tenant "${code_svp_tenant_id}" &>/dev/null
+az login --service-principal -u "${code_svp_client_id}" -p "${code_svp_client_secret}" --tenant "${code_svp_tenant_id}"
 
 # shellcheck disable=SC2046
 if [ $(az account show) ]; then
-    print_alert "Trying to deploy to ${code_function_app_name}"
+    print_alert "Trying to deploy to $(print_success ${code_function_app_name})"
     ${code_function_app_command}
     print_success "Deployment complete" && exit 0
 
