@@ -31,6 +31,7 @@ RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install -y \
     dpkg -i packages-microsoft-prod.deb && \
     apt-get update && \
     apt-get install -y powershell && \
+    apt-get install -y dotnet-sdk-6.0 && \
     echo 'alias powershell="pwsh"' >> "${HOME}/.bashrc"
 
 RUN pwsh -Command Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
