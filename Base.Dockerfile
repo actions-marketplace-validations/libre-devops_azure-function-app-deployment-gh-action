@@ -50,8 +50,7 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
     echo 'alias powershell="pwsh"' >> /home/linuxbrew/.bashrc
 
 RUN brew install python3 node openjdk go rust tree
-RUN pip3 install azure-cli && \
-    tfenv install latest
+RUN pip3 install azure-cli
 
 RUN brew install gcc && \
    brew tap azure/functions && \
