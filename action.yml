@@ -28,7 +28,7 @@ inputs:
     required: true
 
   code-additional-params:
-    description: 'The additional params
+    description: 'The additional params'
     required: true
 
 runs:
