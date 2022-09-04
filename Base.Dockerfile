@@ -49,8 +49,8 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     echo 'alias powershell="pwsh"' >> /home/linuxbrew/.bashrc
 
-RUN brew install tfsec python3 tfenv tree
-RUN pip3 install terraform-compliance checkov && \
+RUN brew install python3 node openjdk go rust tree
+RUN pip3 install azure-cli && \
     tfenv install latest
 
 RUN brew install gcc && \

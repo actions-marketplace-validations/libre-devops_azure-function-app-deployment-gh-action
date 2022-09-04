@@ -52,11 +52,15 @@ else
     print_error "Variable assignment for function app command, ensure it is correct and try again - Error LDO_CD_DEPLOY_COMMAND" ; exit 1
 fi
 
-az login --service-principal \
--u "${code_svp_client_id}" \
--p "${code_svp_client_secret}" \
---tenant "${code_svp_tenant_id}" && \
+az login --service-principal -u "${code_svp_client_id}" -p "${code_svp_client_secret}" --tenant "${code_svp_tenant_id}"
 
-${code_function_app_command}
+# shellcheck disable=SC2046
+if [ $(az account show) ]; then
+    print_alert "Trying to deploy to $(print_success ${code_function_app_name})"
+    ${code_function_app_command}
+    print_success "Deployment complete" && exit 0
 
-
+    else
+      print_alert "Something went wrong"
+      print_error "Please check any outputs and try again" && exit 1
+fi
