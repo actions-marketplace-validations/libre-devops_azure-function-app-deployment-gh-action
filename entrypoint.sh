@@ -58,7 +58,7 @@ az login \
 -p "${code_svp_client_secret}" \
 --tenant "${code_svp_tenant_id}" -o none
 
-if [[ -n "$(az account show)" ]]; then
+if [[ -n "$(az account show)" && "$(command -v func)" ]]; then
     "${code_function_app_command}"
     print_success "Deployment complete" && exit 0
 
